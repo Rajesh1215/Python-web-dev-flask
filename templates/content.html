@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container">
+    <div  class="p-3" align="right"><small>Uploaded on {{d.dt}}</small></div>
+    <div><strong>Author:{{d.author_name}}</strong></div>
+    <div><strong>Genre:{{d.genre}}</strong></div>
+    <div class="content m-5">
+        <center><h3 class="mb-5">{{d.title}}</h3></center>
+        
+
+        <div class="d-flex justify-content-around mb-3">
+           <div width="25%" class="d-flex flex-column"> <img class="rounded-3 shadow"
+             src=" {{url_for('static', filename=d.img1 )}} "  height="90%" width="100%" alt="" > <center>{{d.imgsub1}}</center></div>
+        <div width="25%" class="d-flex flex-column"><img class="rounded-3 shadow"
+             src=" {{url_for('static', filename=d.img2 )}} " height="90%" width="100%" alt=""><center> {{d.imgsub2}}</center></div>
+        </div>
+
+        <p style="text-indent: 8;">{{d.content}}</p>
+    </div>
+</div>
+
+{% endblock %}

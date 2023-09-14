@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            
+            {% for message in messages %}
+            <div class="alert alert-danger m-1" role="alert">
+              {{ message }} 
+            </div>
+            {% endfor %}
+            
+        {% endif %}
+{% endwith %}
+
+{% block content %}
+
+
+<div class="container  main w-100 shadow rounded-2 mt-5 m-auto p-5 " style="position:relative">
+    <div> <big>Hi, </big>{{dtl.fl}} {{dtl.ln}}</div>
+    <br><br>
+    <span>Ph.no:{{dtl.ph}}</span><br>
+    <span>Email:e{{dtl.email}}</span><br>
+    <div>
+     <b>Address</b>
+     <br>
+     <p>{{dtl.adrs}}</p>
+    </div>
+    <button type="button" class="btn btn-primary m-5" data-toggle="modal" data-target="#exampleModal" style="position: absolute; bottom: 0;">
+     Edit
+   </button>
+     
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+<div class="modal-content">
+ <div class="modal-header">
+   <h5 class="modal-title" id="exampleModalLabel">Change Details</h5>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+     <span aria-hidden="true">&times;</span>
+   </button>
+ </div>
+ <div class="modal-body">
+     <div class="main d-flex flex-column rounded-2 align-items-center p-3 bg-white ">
+         <form action="/change" method="post" class=" d-flex flex-column rounded-2 align-items-center bg-white ">
+             
+ 
+             <div class="row" >
+                 <div class="col">
+                     <div class="mb-1">
+                         <label for="fn" class="form-label">First Name</label>
+                         <div class="input-group flex-nowrap">
+                             
+                             <input type="text" class="form-control" id="fl" name="fl" placeholder="{{dtl.fl}}">
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col">
+                     <div class="mb-1">
+                         <label for="ln" class="form-label">Last Name</label>
+                         <div class="input-group flex-nowrap">
+                             
+                             <input type="text" class="form-control" id="ln" name="ln" placeholder="{{dtl.ln}}">
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="row">
+                
+                 <div class="col">
+                     <div class="mb-1">
+                         <label for="ph" class="form-label">Ph.no</label>
+                         <div class="input-group flex-nowrap">
+                             
+                             <input type="number" class="form-control" id="ph" name="ph" placeholder="{{dtl.ph}}">
+                         </div>
+                     </div>
+                 </div>
+             </div>
+             <div class="adr d-flex w-100 mt-3 flex-column">
+                 <label for="adrs">Address</label>
+                 <textarea class="rounded-2  w-75" name="adrs" id="adrs" cols="30" rows="5" placeholder="{{dtl.adrs}}"></textarea>
+             </div>
+
+             <div class="row">
+                 <div class="col">
+                     <div class="mb-1">
+                         <label for="password" class="form-label">Change Password</label>
+                         <div class="input-group flex-nowrap">
+                             
+                             <input type="password" class="form-control" id="password" name="password" >
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col">
+                     <div class="mb-1">
+                         <label for="repassword" class="form-label">Confirm password</label>
+                         <div class="input-group flex-nowrap">
+                             
+                             <input type="password" class="form-control" id="repassword" name="repassword">
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+             <br><br>
+             <button class="btn btn-primary" type="submit">Update</button>
+         </form>
+ </div>
+ <div class="modal-footer">
+   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+   
+ </div>
+</div>
+</div>
+</div>
+</div>
+
+{% endblock %}

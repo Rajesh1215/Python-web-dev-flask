@@ -1,0 +1,35 @@
+
+
+{% extends "base.html" %}
+
+{% with messages = get_flashed_messages() %}
+        {% if messages %}
+            
+            {% for message in messages %}
+            <div class="alert alert-primary m-1" role="alert">
+              {{ message }} 
+            </div>
+            {% endfor %}
+            
+        {% endif %}
+{% endwith %}
+{% block content %}
+<div class="row row-cols-2 justify-content-center">
+
+    {% for b in blog %}
+    <a href="/content/{{b.s_no}}"  class="col-5 rounded-2 m-2  rounded-2 d-flex align-items-center shadow" 
+    style="overflow: hidden;color: black;
+    text-decoration: none; height: 200px;">
+    <div class="  d-flex align-items-center w-100 h-100 pt-3" style="overflow: hidden;position: relative;"  >
+        <small><span style="position: absolute;left:3%; top:3px;" >{{b.genre}}</span></small>
+        <small> <span style="position: absolute;right:3px; top:3px;" >uploaded on {{b.dt}}</span></small>
+        <img class="rounded-3 m-1 " src=" {{url_for('static', filename=b.img1 )}} " alt="" height="95%" width="40%">
+        <div class="para ms-3 w-100" >
+            <p class="blog-cards">{{b.content}}</p>
+        </div>
+        <span style="position: absolute;right:3px; bottom:3px;" > <b> -{{b.author_name}} </b> </span>
+    </div>
+    </a>  
+    {% endfor %}
+</div>
+{% endblock %}
